@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.selector {
+    align-items: center;
+    display: inline-flex;
+}
+
+.selector-item {
+    padding: 0px 15px;
+}
+
+select {
+    height: 40px;
+}
