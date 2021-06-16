@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useRecoilState } from "recoil";
+import { inputState } from "./atoms";
 import styled from "styled-components";
 
 const Container = styled.span`
@@ -31,20 +32,29 @@ const Box = styled.div`
   border: solid 3px black;
 `;
 
-const ColorSelector = ({ value, onChange, ...rest }) => {
+const ColorSelector = () => {
+  // Using useRecoilState() in this ColorSelector component reduces the need to pass props from component to component
+  /*
+    useRecoilState() reads and writes the state like useState()
+    The main difference is that useRecoilState() passes an atom as an argument instead of a default value
+  */
+  const [input, setInput] = useRecoilState(inputState);
+
+  const target = (e) => {
+    setInput(e.target.value);
+  };
   return (
     <div>
       <Container>
-        <input type="color" value={value} onChange={onChange} {...rest} />
-        <input type="text" value={value} onChange={onChange} {...rest} />
+        <input type="color" value={input} onChange={target} />
+        <input type="text" value={input} onChange={target} />
       </Container>
       <Box
         style={{
-          backgroundColor: value,
+          backgroundColor: input,
         }}
-        value={value}
-        onChange={onChange}
-        {...rest}
+        value={input}
+        onChange={target}
       ></Box>
     </div>
   );

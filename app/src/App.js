@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React from "react";
 import ColorSelector from "./ColorSelector";
+import styled from "styled-components";
 
-// import SelectBox from "./SelectBox";
+const Body = styled.div`
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 function App() {
-  const [input, setInput] = useState("#fff");
+  // Recoil enables us to manage state in a non-hierarchal manner
+  // The state is stored in atoms.js and set in ColorSelector component
 
-  const handleInput = (e) => {
-    setInput(e.target.value);
-  };
-  return <ColorSelector value={input} onChange={handleInput} />;
+  return (
+    <Body>
+      <h1>Recoil State Management Project</h1>
+      <ColorSelector />
+    </Body>
+  );
 }
 
 export default App;
